@@ -35,6 +35,7 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 | `axelvc/template-string.nvim`             | Auto-convert quotes to template strings           |
 | `nvim-telescope/telescope-ui-select.nvim` | Replace default UI select with Telescope dropdown |
 | `windwp/nvim-ts-autotag`                  | Auto-close and rename HTML/JSX tags               |
+| `folke/noice.nvim`                        | noice plugin for enhanced command line UI         |
 | `nvim-treesitter/nvim-treesitter`         | Syntax highlighting and parsing                   |
 
 ---

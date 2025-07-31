@@ -136,7 +136,7 @@ return {
             background_colour = "#000000",
             max_width = 50,
             max_height = 5,
-            timeout = 3000,
+            timeout = 2000,
             stages = "fade_in_slide_out",
             render = "default",
           }
