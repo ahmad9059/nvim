@@ -6,8 +6,6 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 
 ## 📷 Screenshots
 
-> _(You can add screenshots here in future to showcase your UI and layout!)_
-
 ![preview-Image](/preview/preview.png)
 
 ---
