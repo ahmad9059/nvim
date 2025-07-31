@@ -101,10 +101,3 @@ Or manually copy files to `~/.config/nvim`
 ## 📝 License
 
 This config is open-source and free to use under the [MIT License](LICENSE).
-
-```
-
----
-
-Let me know if you'd like help generating a `preview.png`, `LICENSE`, or `.gitignore` for your repo too!
-```
