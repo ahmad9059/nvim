@@ -26,7 +26,7 @@ return {
   -- GitHub Copilot integration
   {
     "github/copilot.vim",
-    lazy = false, -- Load immediately
+    lazy = true, -- Load plugin lazily
     config = function()
       -- Use default key mappings
       vim.g.copilot_assume_mapped = true
@@ -76,7 +76,7 @@ return {
   {
     "nvim-telescope/telescope-ui-select.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
-    lazy = false,
+    lazy = true,
     config = function()
       require("telescope").setup {
         extensions = {
@@ -134,9 +134,9 @@ return {
         config = function()
           require("notify").setup {
             background_colour = "#000000",
-            max_width = 50,
-            max_height = 5,
-            timeout = 2000,
+            max_width = 30,
+            max_height = 10,
+            timeout = 3000,
             stages = "fade_in_slide_out",
             render = "default",
           }
@@ -157,6 +157,16 @@ return {
           long_message_to_split = true, -- Split long messages
         },
       }
+    end,
+  },
+
+  -- mini.surround for surrounding text edit
+  {
+    "echasnovski/mini.surround",
+    version = "*", -- Use the latest stable version
+    event = "VeryLazy", -- Lazy load for better startup performance
+    config = function()
+      require("mini.surround").setup()
     end,
   },
 
