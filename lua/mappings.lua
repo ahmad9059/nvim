@@ -24,6 +24,7 @@ map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("i", "<C-a>", "<ESC>ggVG", { desc = "Select all in insert mode" })
 map("v", "<C-a>", "<ESC>ggVG", { desc = "Select all in visual mode" })
 
+-- lazyGit integration
 map("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
 
 -- Visual mode block selections

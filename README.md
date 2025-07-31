@@ -6,7 +6,7 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 
 ## 📷 Screenshots
 
-![preview-Image](/preview/preview.png)
+![preview-Image](/preview/preview.webp)
 
 ---
 
