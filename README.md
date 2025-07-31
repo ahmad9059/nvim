@@ -2,8 +2,7 @@ You're welcome, Ahmad! Based on your config details above, here’s a well-struc
 
 ---
 
-````markdown
-# 🖥️ Ahmad's Neovim Config (NvChad-Based)
+# 🖥️ Neovim Config (NvChad-Based)
 
 Welcome to my personal Neovim configuration, built on top of [NvChad](https://github.com/NvChad/NvChad) for a modern, fast, and minimal Neovim setup tailored for **MERN Stack development**, **web technologies**, and general-purpose programming.
 
@@ -71,7 +70,6 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 nvim
 ```
-````
 
 ### 2. Clone This Repo (after NvChad is installed)
 
