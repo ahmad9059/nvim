@@ -1,12 +1,14 @@
-You're welcome, Ahmad! Based on your config details above, here’s a well-structured `README.md` file for your **NvChad-based Neovim config** repository. It highlights your setup, purpose, plugin stack, and installation steps:
-
----
-
 # 🖥️ Neovim Config (NvChad-Based)
 
 Welcome to my personal Neovim configuration, built on top of [NvChad](https://github.com/NvChad/NvChad) for a modern, fast, and minimal Neovim setup tailored for **MERN Stack development**, **web technologies**, and general-purpose programming.
 
 > ⚡ Designed for speed, productivity, and ease of maintenance.
+
+## 📷 Screenshots
+
+> _(You can add screenshots here in future to showcase your UI and layout!)_
+
+![preview-Image](/preview/preview.png)
 
 ---
 
