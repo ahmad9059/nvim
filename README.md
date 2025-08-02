@@ -54,7 +54,7 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 
 ## 🧰 Requirements
 
-- [Neovim v0.9+](https://neovim.io/)
+- [Neovim v0.9+ (nightly version preferred)](https://neovim.io/)
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/) and `npm` (for LSPs and formatters)
 - [LazyGit](https://github.com/jesseduffield/lazygit) (optional but recommended)
