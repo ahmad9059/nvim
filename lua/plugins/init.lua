@@ -126,7 +126,7 @@ return {
     end,
   },
 
-  -- noice plugin for enhanced command line UI
+  -- Noice.nvim Plugin for enhanced command line UI
   {
     "folke/noice.nvim",
     event = "VeryLazy", -- Load on very lazy event
@@ -171,6 +171,12 @@ return {
     config = function()
       require("mini.surround").setup()
     end,
+  },
+
+  -- Neovim Tmux Navigation
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
   },
 
   -- Import custom spec from NvChad's Blink module
