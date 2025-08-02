@@ -21,17 +21,20 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required dependency for lazygit.nvim
     },
+    config = function()
+      vim.g.lazygit_floating_window_scaling_factor = 0.8 -- size scaling
+    end,
   },
 
   -- GitHub Copilot integration
-  {
-    "github/copilot.vim",
-    lazy = true, -- Load plugin lazily
-    config = function()
-      -- Use default key mappings
-      vim.g.copilot_assume_mapped = true
-    end,
-  },
+  -- {
+  --   "github/copilot.vim",
+  --   lazy = true, -- Load plugin lazily
+  --   config = function()
+  --     -- Use default key mappings
+  --     vim.g.copilot_assume_mapped = true
+  --   end,
+  -- },
 
   -- VS Code-like template string converter
   {
