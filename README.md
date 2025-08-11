@@ -168,22 +168,7 @@ git clone https://github.com/ahmad9059/nvim ~/.config/nvim
 nvim
 ```
 
-### Method 2: Replace Existing NvChad Config
-
-```bash
-# Backup current config
-cp -r ~/.config/nvim ~/.config/nvim.backup
-
-# Clone this config
-git clone https://github.com/ahmad9059/nvim /tmp/nvim-config
-cp -r /tmp/nvim-config/* ~/.config/nvim/
-rm -rf /tmp/nvim-config
-
-# Restart Neovim
-nvim
-```
-
-### Method 3: VSCode-Neovim Users
+### Method 2: VSCode-Neovim Users
 
 This config includes dedicated VSCode compatibility. Simply install the [VSCode-Neovim extension](https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim) and point it to this config.
 
@@ -223,7 +208,7 @@ This config includes dedicated VSCode compatibility. Simply install the [VSCode-
 
 ---
 
-## � CTroubleshooting
+## 🔧 Troubleshooting
 
 ### Common Issues
 
