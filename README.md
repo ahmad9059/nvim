@@ -157,8 +157,6 @@ npm install -g @fsouza/prettierd  # Faster Prettier daemon
 # Backup existing config (if any)
 mv ~/.config/nvim ~/.config/nvim.backup
 
-# Install NvChad
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 # Replace with this config
 rm -rf ~/.config/nvim
@@ -166,6 +164,10 @@ git clone https://github.com/ahmad9059/nvim ~/.config/nvim
 
 # Start Neovim (plugins will auto-install)
 nvim
+
+# run
+:MasonInstallAll
+:Lazy sync
 ```
 
 ### Method 2: VSCode-Neovim Users
