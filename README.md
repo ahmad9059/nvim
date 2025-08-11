@@ -14,17 +14,17 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 
 - 🚀 **Lazy-loaded plugin architecture** via NvChad v2.5
 - 🎨 **Tokyo Night theme** with transparency and custom dashboard
-- � **Intelligent code formatting**e with Prettier, Stylua, and format-on-save
+- 🧠**Intelligent code formatting**e with Prettier, Stylua, and format-on-save
 - 🔧 **Comprehensive LSP support** for modern web development
-- � **Template string auto-conversion** (VS Code-like behavior)
+- 🧵**Template string auto-conversion** (VS Code-like behavior)
 - 🏷️ **Auto HTML/JSX tag closing and renaming**
 - 🔍 **Enhanced Telescope UI** with dropdown selections
-- � **LalzyGit integration** for seamless Git workflow
+- 🧑‍🔧**LalzyGit integration** for seamless Git workflow
 - 🖥️ **Tmux navigation** support for terminal multiplexing
 - 📝 **Markdown rendering** with live preview
 - 🎯 **Smart text surrounding** with mini.surround
 - 💬 **Enhanced command line UI** with Noice.nvim
-- � **VSuCode-Neovim compatibility** with dedicated config
+- 👨‍💻**VSCode-Neovim compatibility** with dedicated config
 - ⌨️ **Custom key mappings** for productivity
 
 ---
