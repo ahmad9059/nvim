@@ -24,7 +24,21 @@ lspconfig.tailwindcss.setup {
   capabilities = capabilities,
 }
 
--- TypeScript and JavaScript (custom setup for tsserver)
+-- Bash LSP
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "sh", "bash" },
+}
+
+-- Markdown LSP (Marksman)
+lspconfig.marksman.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "markdown", "markdown.mdx" },
+}
+
+-- TypeScript/JavaScript
 lspconfig.ts_ls.setup {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false -- disable formatting to avoid conflict with prettier
@@ -34,7 +48,9 @@ lspconfig.ts_ls.setup {
     -- Keymap for triggering code actions
     local opts = { noremap = true, silent = true, buffer = bufnr }
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,

@@ -2,8 +2,9 @@
 local options = {
   -- Set formatters for each filetype
   formatters_by_ft = {
-    lua = { "stylua" }, -- Use stylua for Lua formatting
-    javascript = { "prettierd" }, -- Use prettierd for JS
+    lua = { "stylua" },
+    sh = { "shfmt" },
+    javascript = { "prettierd" },
     javascriptreact = { "prettierd" },
     typescript = { "prettierd" },
     typescriptreact = { "prettierd" },
