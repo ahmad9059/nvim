@@ -1,7 +1,6 @@
 return {
   -- Enable lazy loading by default for all plugins
   defaults = { lazy = true },
-
   -- Set default colorscheme to load at startup
   install = { colorscheme = { "nvchad" } },
 

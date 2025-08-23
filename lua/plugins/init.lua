@@ -21,9 +21,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required dependency for lazygit.nvim
     },
-    config = function()
-      vim.g.lazygit_floating_window_scaling_factor = 0.8 -- size scaling
-    end,
+    config = function() end,
   },
 
   -- GitHub Copilot integration

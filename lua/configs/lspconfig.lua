@@ -3,6 +3,19 @@ local default_config = require "nvchad.configs.lspconfig"
 local on_attach = default_config.on_attach
 local capabilities = default_config.capabilities
 
+-- Custom on_attach to add extra keymaps for all LSPs
+local function custom_on_attach(client, bufnr)
+  -- Load NvChad's default on_attach
+  on_attach(client, bufnr)
+
+  -- Extra keymaps
+  local opts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+end
+
 -- Load lspconfig plugin
 local lspconfig = require "lspconfig"
 
@@ -42,16 +55,10 @@ lspconfig.marksman.setup {
 lspconfig.ts_ls.setup {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false -- disable formatting to avoid conflict with prettier
-
     vim.diagnostic.config({ virtual_text = true }, bufnr)
 
-    -- Keymap for triggering code actions
-    local opts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    on_attach(client, bufnr)
+    -- Still reuse our extra keymaps
+    custom_on_attach(client, bufnr)
   end,
   capabilities = capabilities,
 
