@@ -51,6 +51,8 @@ lspconfig.marksman.setup {
   filetypes = { "markdown", "markdown.mdx" },
 }
 
+
+
 -- TypeScript/JavaScript
 lspconfig.ts_ls.setup {
   on_attach = function(client, bufnr)
@@ -142,3 +144,11 @@ lspconfig.lua_ls.setup {
 -- Use Telescope UI dropdown for vim.ui.select prompts
 vim.ui.select = require("telescope.themes").get_dropdown {}
 require("telescope").load_extension "ui-select"
+
+
+-- -- Python LSP
+-- lspconfig.pyright.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+-- }
+--

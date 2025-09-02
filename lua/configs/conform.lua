@@ -13,6 +13,7 @@ local options = {
     json = { "prettierd" },
     markdown = { "prettierd" },
     yaml = { "prettierd" },
+    -- python = { "prettierd" },
   },
 
   -- Format on save settings
