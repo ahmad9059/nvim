@@ -1,6 +1,6 @@
 # 🖥️ Neovim Config (NvChad-Based)
 
-Welcome to my personal Neovim configuration, built on top of [NvChad](https://github.com/NvChad/NvChad) for a modern, fast, and minimal Neovim setup tailored for **MERN Stack development**, **web technologies**, and general-purpose programming.
+Welcome to my personal Neovim configuration, built on top of [NvChad](https://github.com/NvChad/NvChad) for a modern, fast, and minimal Neovim setup tailored for **web development**, **JavaScript/TypeScript**, and general-purpose programming.
 
 > ⚡ Designed for speed, productivity, and ease of maintenance with VSCode compatibility.
 
@@ -15,49 +15,48 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 
 - 🚀 **Lazy-loaded plugin architecture** via NvChad v2.5
 - 🎨 **Tokyo Night theme** with transparency and custom dashboard
-- 🧠**Intelligent code formatting**e with Prettier, Stylua, and format-on-save
+- 🧠 **Intelligent code formatting** with Prettier, Stylua, and format-on-save
 - 🔧 **Comprehensive LSP support** for modern web development
-- 🧵**Template string auto-conversion** (VS Code-like behavior)
+- 🧵 **Template string auto-conversion** (VS Code-like behavior)
 - 🏷️ **Auto HTML/JSX tag closing and renaming**
 - 🔍 **Enhanced Telescope UI** with dropdown selections
-- 🧑‍🔧**LalzyGit integration** for seamless Git workflow
+- 🧑‍🔧 **LazyGit integration** for seamless Git workflow
 - 🖥️ **Tmux navigation** support for terminal multiplexing
 - 📝 **Markdown rendering** with live preview
-- 🎯 **Smart text surrounding** with mini.surround
-- 💬 **Enhanced command line UI** with Noice.nvim
-- 👨‍💻**VSCode-Neovim compatibility** with dedicated config
+- 👨‍💻 **VSCode-Neovim compatibility** with dedicated config
 - ⌨️ **Custom key mappings** for productivity
+- ��� **BlVink completion engine** for fast autocompletion
+- 🌲 **Enhanced Treesitter** with auto-install for syntax highlighting
 
 ---
 
 ## 🛠️ Plugin Ecosystem
 
-| Plugin                                      | Purpose                                   | Status           |
-| ------------------------------------------- | ----------------------------------------- | ---------------- |
+| Plugin                                      | Purpose                                        | Status           |
+| ------------------------------------------- | ---------------------------------------------- | ---------------- |
 | **Core & UI**                               |
-| `NvChad/NvChad`                             | Base configuration framework              | ✅ Active        |
-| `folke/noice.nvim`                          | Enhanced command line and notification UI | ✅ Active        |
-| `rcarriga/nvim-notify`                      | Beautiful notification system             | ✅ Active        |
+| `NvChad/NvChad`                             | Base configuration framework                   | ✅ Active        |
+| `folke/which-key.nvim`                      | Key binding helper with helix preset           | ✅ Active        |
 | **LSP & Completion**                        |
-| `neovim/nvim-lspconfig`                     | Language Server Protocol configuration    | ✅ Active        |
-| `nvchad.blink.lazyspec`                     | Fast completion engine                    | ✅ Active        |
+| `neovim/nvim-lspconfig`                     | Language Server Protocol configuration         | ✅ Active        |
+| `nvchad.blink.lazyspec`                     | Fast completion engine                         | ✅ Active        |
 | **Formatting & Linting**                    |
-| `stevearc/conform.nvim`                     | Code formatting with Prettier, Stylua     | ✅ Active        |
+| `stevearc/conform.nvim`                     | Code formatting with Prettier, Stylua          | ✅ Active        |
 | **Git Integration**                         |
-| `kdheepak/lazygit.nvim`                     | LazyGit terminal UI integration           | ✅ Active        |
+| `kdheepak/lazygit.nvim`                     | LazyGit terminal UI integration                | ✅ Active        |
 | **Navigation & Movement**                   |
-| `christoomey/vim-tmux-navigator`            | Seamless Tmux pane navigation             | ✅ Active        |
-| `nvim-telescope/telescope-ui-select.nvim`   | Telescope dropdown for vim.ui.select      | ✅ Active        |
+| `christoomey/vim-tmux-navigator`            | Seamless Tmux pane navigation                  | ✅ Active        |
+| `nvim-telescope/telescope-ui-select.nvim`   | Telescope dropdown for vim.ui.select           | ✅ Active        |
 | **Language-Specific**                       |
-| `axelvc/template-string.nvim`               | Auto-convert quotes to template strings   | ✅ Active        |
-| `windwp/nvim-ts-autotag`                    | Auto-close and rename HTML/JSX tags       | ✅ Active        |
-| `MeanderingProgrammer/render-markdown.nvim` | Live markdown rendering                   | ✅ Active        |
-| **Text Editing**                            |
-| `echasnovski/mini.surround`                 | Smart text surrounding operations         | ✅ Active        |
+| `axelvc/template-string.nvim`               | Auto-convert quotes to template strings        | ✅ Active        |
+| `windwp/nvim-ts-autotag`                    | Auto-close and rename HTML/JSX tags            | ✅ Active        |
+| `MeanderingProgrammer/render-markdown.nvim` | Live markdown rendering                        | ✅ Active        |
 | **Syntax & Parsing**                        |
-| `nvim-treesitter/nvim-treesitter`           | Advanced syntax highlighting              | ✅ Active        |
-| **Optional**                                |
-| `github/copilot.vim`                        | AI code suggestions                       | 🔄 Commented out |
+| `nvim-treesitter/nvim-treesitter`           | Advanced syntax highlighting with auto-install | ✅ Active        |
+| **Optional/Commented**                      |
+| `github/copilot.vim`                        | AI code suggestions                            | 🔄 Commented out |
+| `folke/noice.nvim`                          | Enhanced command line and notification UI      | 🔄 Commented out |
+| `rcarriga/nvim-notify`                      | Beautiful notification system                  | 🔄 Commented out |
 
 ---
 
@@ -65,25 +64,31 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 
 ### Full LSP Support
 
-- **JavaScript/TypeScript** - Complete IntelliSense, auto-imports, refactoring
+- **JavaScript/TypeScript** - Complete IntelliSense, auto-imports, refactoring (ts_ls)
 - **React (JSX/TSX)** - Component intelligence, prop validation
 - **HTML/CSS** - Tag completion, CSS properties, validation
 - **JSON** - Schema validation, formatting
-- **Lua** - Neovim API awareness, diagnostics
-- **Markdown** - Live rendering, formatting
+- **Lua** - Neovim API awareness, diagnostics with vim globals
+- **Markdown** - Live rendering with Marksman LSP
+- **TailwindCSS** - Class completion and validation
+- **Bash/Shell** - Script validation and completion
+- **Emmet** - Abbreviation expansion for web technologies
 
 ### Enhanced Features
 
 - **TailwindCSS** - Class completion and validation
-- **Emmet** - Fast HTML/CSS abbreviation expansion
-- **Template Strings** - Auto-conversion for JS/TS/React
-- **Auto-tagging** - Smart HTML/JSX tag management
+- **Emmet** - Fast HTML/CSS abbreviation expansion for HTML, CSS, JS/TS React
+- **Template Strings** - Auto-conversion for JS/TS/React/Vue/Svelte/Python/C#
+- **Auto-tagging** - Smart HTML/JSX tag management with Treesitter
+- **Bash/Shell** - LSP support for shell scripting
+- **Markdown** - Enhanced support with Marksman LSP and live rendering
 
 ### Formatting Support
 
-- **Prettier** - JS, TS, HTML, CSS, JSON, Markdown, YAML
+- **Prettier/Prettierd** - JavaScript, TypeScript, HTML, CSS, JSON, Markdown, YAML
 - **Stylua** - Lua code formatting
-- **Format on Save** - Automatic formatting with 500ms timeout
+- **Shfmt** - Shell script formatting
+- **Format on Save** - Automatic formatting with 500ms timeout and LSP fallback
 
 ---
 
@@ -104,17 +109,22 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 - `<C-a>` → Select all text
 - `<A-hjkl>` → Navigate in insert mode
 - `<leader>lg` → Open LazyGit
-- `<A-i>` → Toggle floating terminal
+- `<A-i>` → Toggle floating terminal with custom styling
 - `<C-hjkl>` → Tmux navigation
-- `<C-1-9>` → Switch between buffers
+- `<C-\>` → Go to previous Tmux pane
+- `g1-g9` → Switch between buffers (g0 for last buffer)
+- Visual mode selections: `<leader>i{`, `<leader>a{`, etc. for brackets/quotes
 
 ### Advanced Features
 
-- **VSCode compatibility** - Dedicated config for VSCode-Neovim extension
-- **Floating terminal** - Customized with rounded borders
-- **Smart diagnostics** - Virtual text enabled with proper configuration
-- **Auto-formatting** - Format on save with LSP fallback
-- **Template strings** - Auto-convert quotes to backticks in JS/TS
+- **VSCode compatibility** - Dedicated minimal config for VSCode-Neovim extension
+- **Floating terminal** - Customized with rounded borders (80% width/height)
+- **Smart diagnostics** - Virtual text enabled globally
+- **Auto-formatting** - Format on save with 500ms timeout and LSP fallback
+- **Template strings** - Auto-convert quotes to backticks in JS/TS/React
+- **Blink completion** - Fast completion engine integrated with NvChad
+- **Relative line numbers** - Enhanced navigation experience
+- **Buffer switching** - Quick buffer navigation with g1-g9 keys
 
 ---
 
@@ -134,18 +144,22 @@ Welcome to my personal Neovim configuration, built on top of [NvChad](https://gi
 
 ### Language Servers & Formatters
 
-The following will be automatically installed when you open relevant files:
+The following LSP servers are configured and can be installed via Mason:
 
 ```bash
-# LSP Servers (installed via Mason or manually)
-npm install -g typescript-language-server
+# LSP Servers (install via :Mason or manually)
+npm install -g typescript-language-server    # JavaScript/TypeScript
 npm install -g vscode-langservers-extracted  # HTML, CSS, JSON
-npm install -g @tailwindcss/language-server
-npm install -g emmet-ls
+npm install -g @tailwindcss/language-server  # TailwindCSS
+npm install -g emmet-ls                       # Emmet abbreviations
+npm install -g bash-language-server          # Bash/Shell
+npm install -g marksman                       # Markdown
 
-# Formatters
-npm install -g prettier
-npm install -g @fsouza/prettierd  # Faster Prettier daemon
+# Formatters (for conform.nvim)
+npm install -g prettier                       # JS/TS/HTML/CSS/JSON/MD/YAML
+npm install -g @fsouza/prettierd             # Faster Prettier daemon
+cargo install stylua                          # Lua formatting
+npm install -g shfmt                          # Shell script formatting
 ```
 
 ---
@@ -158,16 +172,18 @@ npm install -g @fsouza/prettierd  # Faster Prettier daemon
 # Backup existing config (if any)
 mv ~/.config/nvim ~/.config/nvim.backup
 
-
-# Replace with this config
-rm -rf ~/.config/nvim
+# Clone this config
 git clone https://github.com/ahmad9059/nvim ~/.config/nvim
 
 # Start Neovim (plugins will auto-install)
 nvim
 
-# run
+# Install LSP servers and formatters
+:Mason
+# Then install the servers you need, or run:
 :MasonInstallAll
+
+# Sync plugins if needed
 :Lazy sync
 ```
 
@@ -202,7 +218,8 @@ This config includes dedicated VSCode compatibility. Simply install the [VSCode-
 #### Terminal Usage
 
 - `<A-i>` - Toggle floating terminal with custom styling
-- Terminal opens with 80% width/height and rounded borders
+- Terminal opens with 80% width, 70% height, rounded borders
+- Positioned at 10% from top, 8% from left for optimal viewing
 
 #### Tmux Integration
 
@@ -233,6 +250,8 @@ This config includes dedicated VSCode compatibility. Simply install the [VSCode-
 
 # Install formatters manually
 npm install -g prettier @fsouza/prettierd
+cargo install stylua
+npm install -g shfmt
 ```
 
 **Plugins not loading?**
@@ -258,19 +277,21 @@ npm install -g prettier @fsouza/prettierd
 ~/.config/nvim/
 ├── init.lua                 # Main entry point with VSCode compatibility
 ├── lazy-lock.json          # Plugin version lock file
+├── .stylua.toml            # Stylua formatter configuration
 ├── lua/
 │   ├── autocmds.lua        # Auto commands
 │   ├── chadrc.lua          # NvChad theme and UI configuration
 │   ├── mappings.lua        # Custom key mappings
 │   ├── options.lua         # Neovim options (relative numbers, etc.)
 │   ├── configs/
-│   │   ├── conform.lua     # Formatter configuration
+│   │   ├── conform.lua     # Formatter configuration (Prettier, Stylua, etc.)
 │   │   ├── lazy.lua        # Lazy.nvim setup
 │   │   └── lspconfig.lua   # LSP server configurations
 │   └── plugins/
 │       └── init.lua        # Plugin specifications
 └── preview/
-    └── preview.png         # Screenshot
+    ├── preview.png         # Screenshot 1
+    └── preview-2.png       # Screenshot 2
 ```
 
 ---
@@ -283,8 +304,12 @@ Edit `lua/chadrc.lua`:
 
 ```lua
 M.base46 = {
-  theme = "onedark", -- Change to your preferred theme
-  transparency = false, -- Disable transparency
+  theme = "tokyonight", -- Current theme (change to your preferred theme)
+  transparency = true,  -- Current setting (set to false to disable)
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
 }
 ```
 
@@ -305,8 +330,14 @@ lspconfig.pyright.setup {
 Edit `lua/mappings.lua`:
 
 ```lua
--- Add your custom mappings
+-- Example: Add your custom mappings
 map("n", "<leader>custom", "<cmd>YourCommand<CR>", { desc = "Your description" })
+
+-- Current custom mappings include:
+-- Buffer navigation with g + numbers
+-- Visual mode selections for brackets/quotes
+-- Tmux navigation integration
+-- Custom terminal toggle with styling
 ```
 
 ---
