@@ -1,16 +1,15 @@
 return {
-  -- Formatter plugin (Conform.nvim)
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre", -- Trigger before saving buffer (used for format on save)
-    opts = require "configs.conform", -- Load custom formatter options from your config
+    -- event = 'BufWritePre', -- uncomment for format on save
+    opts = require "configs.conform",
   },
 
-  -- LSP configuration using lspconfig
+  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require "configs.lspconfig" -- Load your LSP config file
+      require "configs.lspconfig"
     end,
   },
 
@@ -23,17 +22,6 @@ return {
     },
     config = function() end,
   },
-
-  -- GitHub Copilot integration
-  -- {
-  --   "github/copilot.vim",
-  --   lazy = true, -- Load plugin lazily
-  --   config = function()
-  --     -- Use default key mappings
-  --     vim.g.copilot_assume_mapped = true
-  --   end,
-  -- },
-
   -- VS Code-like template string converter
   {
     "axelvc/template-string.nvim",
@@ -72,7 +60,6 @@ return {
       }
     end,
   },
-
   -- UI enhancement: Replace vim.ui.select with Telescope dropdown
   {
     "nvim-telescope/telescope-ui-select.nvim",
@@ -89,7 +76,6 @@ return {
       require("telescope").load_extension "ui-select"
     end,
   },
-
   -- Auto-close & rename HTML/JSX tags using Treesitter
   {
     "windwp/nvim-ts-autotag",
@@ -108,7 +94,6 @@ return {
       }
     end,
   },
-
   --  Markdown rendering and preview
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -123,54 +108,25 @@ return {
       }
     end,
   },
-
-  -- -- Noice.nvim Plugin for enhanced command line UI
-  -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy", -- Load on very lazy event
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim", -- Required dependency for noice
-  --     {
-  --       "rcarriga/nvim-notify", -- Optional: use nvim-notify for notifications
-  --       config = function()
-  --         require("notify").setup {
-  --           background_colour = "#000000",
-  --           max_width = 30,
-  --           max_height = 10,
-  --           timeout = 3000,
-  --           stages = "fade_in_slide_out",
-  --           render = "default",
-  --         }
-  --       end,
-  --     },
-  --   },
-  --   config = function()
-  --     require("noice").setup {
-  --       lsp = {
-  --         override = {
-  --           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-  --           ["vim.lsp.util.stylize_markdown"] = false,
-  --         },
-  --       },
-  --       presets = {
-  --         bottom_search = true, -- Enable bottom search bar
-  --         command_palette = true, -- Enable command palette
-  --         long_message_to_split = true, -- Split long messages
-  --       },
-  --     }
-  --   end,
-  -- },
-
   -- Neovim Tmux Navigation
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
 
-  -- Import custom spec from NvChad's Blink module
+  {
+    "folke/which-key.nvim",
+    keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+    cmd = "WhichKey",
+    opts = function()
+      preset = "helix", dofile(vim.g.base46_cache .. "whichkey")
+      return {
+        preset = "helix",
+      }
+    end,
+  },
+  -- test new blink
   { import = "nvchad.blink.lazyspec" },
-
-  -- Treesitter syntax highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -188,3 +144,50 @@ return {
     auto_install = true, -- Automatically install missing parsers
   },
 }
+
+-- GitHub Copilot integration
+-- {
+--   "github/copilot.vim",
+--   lazy = true, -- Load plugin lazily
+--   config = function()
+--     -- Use default key mappings
+--     vim.g.copilot_assume_mapped = true
+--   end,
+-- },
+
+-- -- Noice.nvim Plugin for enhanced command line UI
+-- {
+--   "folke/noice.nvim",
+--   event = "VeryLazy", -- Load on very lazy event
+--   dependencies = {
+--     "MunifTanjim/nui.nvim", -- Required dependency for noice
+--     {
+--       "rcarriga/nvim-notify", -- Optional: use nvim-notify for notifications
+--       config = function()
+--         require("notify").setup {
+--           background_colour = "#000000",
+--           max_width = 30,
+--           max_height = 10,
+--           timeout = 3000,
+--           stages = "fade_in_slide_out",
+--           render = "default",
+--         }
+--       end,
+--     },
+--   },
+--   config = function()
+--     require("noice").setup {
+--       lsp = {
+--         override = {
+--           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+--           ["vim.lsp.util.stylize_markdown"] = false,
+--         },
+--       },
+--       presets = {
+--         bottom_search = true, -- Enable bottom search bar
+--         command_palette = true, -- Enable command palette
+--         long_message_to_split = true, -- Split long messages
+--       },
+--     }
+--   end,
+-- },

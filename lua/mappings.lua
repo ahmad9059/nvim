@@ -1,12 +1,17 @@
 require "nvchad.mappings"
 
+-- add yours here
+
 local map = vim.keymap.set
 
--- Pressing ; in normal mode will act like : and open the command line
 map("n", ";", ":", { desc = "CMD enter command mode" })
-
--- Pressing <ESC> in insert mode will act like jk and exit insert mode
 map("i", "jk", "<ESC>")
+
+-- disable NvChad terminal keymaps
+vim.keymap.del("n", "<leader>h")
+vim.keymap.del("n", "<leader>v")
+map({ "n", "t" }, "<A-v>", "<nop>", { desc = "disabled" })
+map({ "n", "t" }, "<A-h>", "<nop>", { desc = "disabled" })
 
 -- Save file with Ctrl + S in normal, insert, and visual modes
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
@@ -44,15 +49,22 @@ map("v", "<leader>a'", "va'", { desc = "Select around ''" })
 map("v", "<leader>i`", "vi`", { desc = "Select inside ``" })
 map("v", "<leader>a`", "va`", { desc = "Select around ``" })
 
--- Move between buffers with Ctrl + number keys
+-- Move between buffers with g + number keys (normal mode only)
 for i = 1, 9 do
-  map({ "n", "v" }, "<leader>" .. i, function()
+  vim.keymap.set("n", "g" .. i, function()
     local bufs = vim.fn.getbufinfo { buflisted = 1 }
     if bufs[i] then
       vim.api.nvim_set_current_buf(bufs[i].bufnr)
     end
   end, { desc = "Switch to listed buffer " .. i })
 end
+-- g0 switches to the last listed buffer
+vim.keymap.set("n", "g0", function()
+  local bufs = vim.fn.getbufinfo { buflisted = 1 }
+  if bufs[#bufs] then
+    vim.api.nvim_set_current_buf(bufs[#bufs].bufnr)
+  end
+end, { desc = "Switch to last listed buffer" })
 
 -- Toggle terminal with Alt + i in normal and terminal modes with custom floating window options
 map({ "n", "t" }, "<A-i>", function()

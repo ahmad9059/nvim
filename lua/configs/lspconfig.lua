@@ -62,10 +62,8 @@ lspconfig.ts_ls.setup {
   end,
   capabilities = capabilities,
 
-  -- Command to start the TypeScript language server
   cmd = { "typescript-language-server", "--stdio" },
 
-  -- Filetypes handled by this server
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -73,13 +71,12 @@ lspconfig.ts_ls.setup {
     "typescriptreact",
   },
 
-  -- Language server preferences for better auto-import suggestions
   settings = {
     typescript = {
       preferences = {
         includeCompletionsForModuleExports = true,
         includeCompletionsWithInsertText = true,
-        importModuleSpecifierPreference = "non-relative", -- use absolute paths
+        importModuleSpecifierPreference = "non-relative",
       },
     },
     javascript = {
@@ -98,7 +95,7 @@ lspconfig.jsonls.setup {
   capabilities = capabilities,
 }
 
--- Emmet LSP (supports fast HTML/CSS abbreviation expansions)
+-- Emmet LSP
 lspconfig.emmet_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -113,35 +110,35 @@ lspconfig.emmet_ls.setup {
   init_options = {
     html = {
       options = {
-        ["bem.enabled"] = true, -- Enable BEM-style abbreviations
+        ["bem.enabled"] = true,
       },
     },
   },
 }
 
--- Use Telescope UI dropdown for vim.ui.select prompts (e.g. code actions)
-vim.ui.select = require("telescope.themes").get_dropdown {}
-require("telescope").load_extension "ui-select"
-
--- Lua LSP (custom settings to recognize 'vim' as global and disable telemetry)
+-- Lua LSP
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {
       diagnostics = {
-        globals = { "vim" }, -- Avoid undefined global warning for 'vim'
+        globals = { "vim" },
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true), -- Make Neovim runtime files visible to LSP
-        checkThirdParty = false, -- Disable third-party checks
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
       runtime = {
-        version = "LuaJIT", -- Lua runtime version used by Neovim
+        version = "LuaJIT",
       },
       telemetry = {
-        enable = false, -- Disable telemetry to respect privacy
+        enable = false,
       },
     },
   },
 }
+
+-- Use Telescope UI dropdown for vim.ui.select prompts
+vim.ui.select = require("telescope.themes").get_dropdown {}
+require("telescope").load_extension "ui-select"
