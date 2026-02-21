@@ -13,6 +13,8 @@ local options = {
     jsonc = { "prettierd" }, -- tsconfig.json, .eslintrc.json use JSONC
     markdown = { "prettierd" },
     yaml = { "prettierd" },
+    c = { "clang_format" },
+    cpp = { "clang_format" },
   },
 
   format_on_save = {

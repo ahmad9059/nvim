@@ -159,6 +159,8 @@ return {
         "dockerfile",
         "graphql",
         "prisma",
+        "c",
+        "cpp",
       },
       auto_install = true,
     },

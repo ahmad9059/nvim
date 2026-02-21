@@ -126,6 +126,20 @@ lspconfig.emmet_ls.setup {
   },
 }
 
+-- C/C++ LSP
+lspconfig.clangd.setup {
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--completion-style=detailed",
+    "--header-insertion=iwyu",
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+}
+
 -- Prisma LSP (schema validation, completions, formatting via `prisma format`)
 lspconfig.prismals.setup {
   on_attach = custom_on_attach,
