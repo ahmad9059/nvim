@@ -16,6 +16,14 @@ local function custom_on_attach(client, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 end
 
+-- Round borders on LSP hover (K) and signature help popups
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = "rounded",
+})
+
 -- Load lspconfig plugin
 local lspconfig = require "lspconfig"
 
