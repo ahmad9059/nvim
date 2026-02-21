@@ -158,8 +158,12 @@ return {
         local line = vim.api.nvim_get_current_line()
         local char_before = line:sub(col, col)
         local char_after = line:sub(col + 1, col + 1)
-        -- suppress completion when cursor is inside empty {} so Enter expands braces normally
+        -- suppress completion inside empty {} so Enter expands braces normally
         if char_before == "{" and char_after == "}" then
+          return false
+        end
+        -- suppress completion immediately after a closing }
+        if char_before == "}" then
           return false
         end
         return true
