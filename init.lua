@@ -15,6 +15,8 @@ if vim.g.vscode then
 end
 
 -- Neovim
+vim.loader.enable() -- cache compiled Lua bytecode, speeds up every subsequent startup
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 

@@ -7,6 +7,7 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" }, -- load only when a file is about to be opened
     config = function()
       require "configs.lspconfig"
     end,
@@ -139,6 +140,17 @@ return {
 
   -- blink completion
   { import = "nvchad.blink.lazyspec" },
+
+  {
+    "saghen/blink.cmp",
+    opts = {
+      completion = {
+        menu = { border = "rounded" },
+        documentation = { window = { border = "rounded" } },
+      },
+      signature = { window = { border = "rounded" } },
+    },
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",

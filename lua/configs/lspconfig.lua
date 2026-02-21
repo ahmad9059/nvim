@@ -126,6 +126,39 @@ lspconfig.emmet_ls.setup {
   },
 }
 
+-- GraphQL LSP
+lspconfig.graphql.setup {
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+  filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript", "javascript" },
+}
+
+-- YAML LSP
+lspconfig.yamlls.setup {
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      schemaStore = {
+        enable = true, -- auto-detect and apply schemas from SchemaStore
+        url = "https://www.schemastore.org/api/json/catalog.json",
+      },
+      schemas = {
+        -- Docker Compose
+        ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
+          "docker-compose*.yml",
+          "compose*.yml",
+        },
+        -- GitHub Actions
+        ["https://json.schemastore.org/github-workflow.json"] = ".github/workflows/*.yml",
+      },
+      validate = true,
+      completion = true,
+      hover = true,
+    },
+  },
+}
+
 -- C/C++ LSP
 lspconfig.clangd.setup {
   on_attach = custom_on_attach,
