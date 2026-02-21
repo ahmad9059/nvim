@@ -120,7 +120,11 @@ return {
     opts = {
       display_mode = "float",
       ui = {
-        win_opts = { border = "rounded" },
+        win_opts = {
+          border = "rounded",
+          height = math.floor(vim.o.lines * 0.85),
+          row = 1,
+        },
       },
     },
   },
