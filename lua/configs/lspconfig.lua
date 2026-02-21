@@ -126,6 +126,24 @@ lspconfig.emmet_ls.setup {
   },
 }
 
+-- Prisma LSP (schema validation, completions, formatting via `prisma format`)
+lspconfig.prismals.setup {
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+}
+
+-- Docker LSP
+lspconfig.dockerls.setup {
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+}
+
+-- Docker Compose LSP
+lspconfig.docker_compose_language_service.setup {
+  on_attach = custom_on_attach,
+  capabilities = capabilities,
+}
+
 -- Lua LSP (lazydev.nvim handles workspace/library automatically)
 lspconfig.lua_ls.setup {
   on_attach = custom_on_attach,

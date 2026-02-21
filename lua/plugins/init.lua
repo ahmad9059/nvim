@@ -112,6 +112,13 @@ return {
     opts = {},
   },
 
+  -- HTTP REST client for testing Node.js/Express API endpoints (.http files)
+  {
+    "mistweaverco/kulala.nvim",
+    ft = { "http", "rest" },
+    opts = {},
+  },
+
   -- Neovim Tmux Navigation
   {
     "christoomey/vim-tmux-navigator",
@@ -148,6 +155,10 @@ return {
         "tsx",
         "json",
         "jsonc",
+        "yaml",
+        "dockerfile",
+        "graphql",
+        "prisma",
       },
       auto_install = true,
     },
