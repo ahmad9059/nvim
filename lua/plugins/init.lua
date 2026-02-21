@@ -117,7 +117,12 @@ return {
   {
     "mistweaverco/kulala.nvim",
     ft = { "http", "rest" },
-    opts = {},
+    opts = {
+      display_mode = "float",
+      ui = {
+        win_opts = { border = "rounded" },
+      },
+    },
   },
 
   -- Neovim Tmux Navigation
