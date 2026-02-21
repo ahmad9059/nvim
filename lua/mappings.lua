@@ -1,7 +1,5 @@
 require "nvchad.mappings"
 
--- add yours here
-
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -14,7 +12,7 @@ map({ "n", "t" }, "<A-v>", "<nop>", { desc = "disabled" })
 map({ "n", "t" }, "<A-h>", "<nop>", { desc = "disabled" })
 
 -- Save file with Ctrl + S in normal, insert, and visual modes
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 
 -- Move cursor in insert mode with Alt + h/j/k/l
 map("i", "<A-h>", "<Left>", { desc = "Move left in insert mode" })
@@ -27,27 +25,8 @@ map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("i", "<C-a>", "<ESC>ggVG", { desc = "Select all in insert mode" })
 map("v", "<C-a>", "<ESC>ggVG", { desc = "Select all in visual mode" })
 
--- lazyGit integration
+-- LazyGit integration
 map("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
-
--- Visual mode block selections
-map("v", "<leader>i{", "vi{", { desc = "Select inside {}" })
-map("v", "<leader>a{", "va{", { desc = "Select around {}" })
-
-map("v", "<leader>i(", "vi(", { desc = "Select inside ()" })
-map("v", "<leader>a(", "va(", { desc = "Select around ()" })
-
-map("v", "<leader>i[", "vi[", { desc = "Select inside []" })
-map("v", "<leader>a[", "va[", { desc = "Select around []" })
-
-map("v", '<leader>i"', 'vi"', { desc = 'Select inside ""' })
-map("v", '<leader>a"', 'va"', { desc = 'Select around ""' })
-
-map("v", "<leader>i'", "vi'", { desc = "Select inside ''" })
-map("v", "<leader>a'", "va'", { desc = "Select around ''" })
-
-map("v", "<leader>i`", "vi`", { desc = "Select inside ``" })
-map("v", "<leader>a`", "va`", { desc = "Select around ``" })
 
 -- Move between buffers with g + number keys (normal mode only)
 for i = 1, 9 do
@@ -58,6 +37,7 @@ for i = 1, 9 do
     end
   end, { desc = "Switch to listed buffer " .. i })
 end
+
 -- g0 switches to the last listed buffer
 vim.keymap.set("n", "g0", function()
   local bufs = vim.fn.getbufinfo { buflisted = 1 }
@@ -81,9 +61,9 @@ map({ "n", "t" }, "<A-i>", function()
   }
 end, { desc = "Toggle floating terminal" })
 
--- Tmux Neovim Naviagator
-map("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>")
-map("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>")
-map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
-map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
-map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>")
+-- Tmux Neovim Navigator
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Navigate left (tmux)" })
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Navigate down (tmux)" })
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "Navigate up (tmux)" })
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "Navigate right (tmux)" })
+map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", { desc = "Navigate previous (tmux)" })

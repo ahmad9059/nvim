@@ -21,45 +21,40 @@ local lspconfig = require "lspconfig"
 
 -- HTML LSP
 lspconfig.html.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
 }
 
 -- CSS LSP
 lspconfig.cssls.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
 }
 
 -- TailwindCSS LSP
 lspconfig.tailwindcss.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
 }
 
 -- Bash LSP
 lspconfig.bashls.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
   filetypes = { "sh", "bash" },
 }
 
 -- Markdown LSP (Marksman)
 lspconfig.marksman.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
   filetypes = { "markdown", "markdown.mdx" },
 }
-
-
 
 -- TypeScript/JavaScript
 lspconfig.ts_ls.setup {
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false -- disable formatting to avoid conflict with prettier
-    vim.diagnostic.config({ virtual_text = true }, bufnr)
-
-    -- Still reuse our extra keymaps
     custom_on_attach(client, bufnr)
   end,
   capabilities = capabilities,
@@ -93,13 +88,13 @@ lspconfig.ts_ls.setup {
 
 -- JSON LSP
 lspconfig.jsonls.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
 }
 
 -- Emmet LSP
 lspconfig.emmet_ls.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
   filetypes = {
     "html",
@@ -118,9 +113,9 @@ lspconfig.emmet_ls.setup {
   },
 }
 
--- Lua LSP
+-- Lua LSP (lazydev.nvim handles workspace/library automatically)
 lspconfig.lua_ls.setup {
-  on_attach = on_attach,
+  on_attach = custom_on_attach,
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -128,7 +123,6 @@ lspconfig.lua_ls.setup {
         globals = { "vim" },
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
         checkThirdParty = false,
       },
       runtime = {
@@ -141,14 +135,8 @@ lspconfig.lua_ls.setup {
   },
 }
 
--- Use Telescope UI dropdown for vim.ui.select prompts
-vim.ui.select = require("telescope.themes").get_dropdown {}
-require("telescope").load_extension "ui-select"
-
-
 -- -- Python LSP
 -- lspconfig.pyright.setup {
---   on_attach = on_attach,
+--   on_attach = custom_on_attach,
 --   capabilities = capabilities,
 -- }
---
