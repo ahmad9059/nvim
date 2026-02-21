@@ -73,14 +73,14 @@ lspconfig.ts_ls.setup {
       preferences = {
         includeCompletionsForModuleExports = true,
         includeCompletionsWithInsertText = true,
-        importModuleSpecifierPreference = "non-relative",
+        importModuleSpecifierPreference = "shortest", -- respects tsconfig paths (@/ aliases)
       },
     },
     javascript = {
       preferences = {
         includeCompletionsForModuleExports = true,
         includeCompletionsWithInsertText = true,
-        importModuleSpecifierPreference = "non-relative",
+        importModuleSpecifierPreference = "shortest", -- respects tsconfig paths (@/ aliases)
       },
     },
   },
@@ -89,6 +89,19 @@ lspconfig.ts_ls.setup {
 -- JSON LSP
 lspconfig.jsonls.setup {
   on_attach = custom_on_attach,
+  capabilities = capabilities,
+}
+
+-- ESLint LSP (works with eslint-config-next and any ESLint config)
+lspconfig.eslint.setup {
+  on_attach = function(client, bufnr)
+    custom_on_attach(client, bufnr)
+    -- Auto-fix all ESLint issues on save
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
   capabilities = capabilities,
 }
 

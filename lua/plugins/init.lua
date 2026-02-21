@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
+    event = "BufWritePre",
     opts = require "configs.conform",
   },
 
@@ -141,9 +142,12 @@ return {
         "vimdoc",
         "html",
         "css",
+        "scss",
         "javascript",
         "typescript",
         "tsx",
+        "json",
+        "jsonc",
       },
       auto_install = true,
     },

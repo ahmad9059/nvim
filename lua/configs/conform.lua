@@ -8,7 +8,9 @@ local options = {
     typescriptreact = { "prettierd" },
     html = { "prettierd" },
     css = { "prettierd" },
+    scss = { "prettierd" },
     json = { "prettierd" },
+    jsonc = { "prettierd" }, -- tsconfig.json, .eslintrc.json use JSONC
     markdown = { "prettierd" },
     yaml = { "prettierd" },
   },
