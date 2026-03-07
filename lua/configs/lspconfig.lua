@@ -3,18 +3,36 @@ local default_config = require "nvchad.configs.lspconfig"
 local on_attach = default_config.on_attach
 local capabilities = default_config.capabilities
 
--- Custom on_attach to add extra keymaps for all LSPs
-local function custom_on_attach(client, bufnr)
-  -- Load NvChad's default on_attach
-  on_attach(client, bufnr)
+-- LspAttach autocmd for keymaps and per-server tweaks
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local bufnr = args.buf
 
-  -- Extra keymaps
-  local opts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-end
+    -- NvChad's default on_attach
+    on_attach(client, bufnr)
+
+    -- Extra keymaps
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+    -- Disable formatting for ts_ls to avoid conflict with prettier
+    if client and client.name == "ts_ls" then
+      client.server_capabilities.documentFormattingProvider = false
+    end
+
+    -- Auto-fix all ESLint issues on save
+    if client and client.name == "eslint" then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+    end
+  end,
+})
 
 -- Round borders on LSP hover (K) and signature help popups
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -24,99 +42,65 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
   border = "rounded",
 })
 
--- Load lspconfig plugin
-local lspconfig = require "lspconfig"
+-- Global capabilities for all servers
+vim.lsp.config("*", {
+  capabilities = capabilities,
+})
 
 -- HTML LSP
-lspconfig.html.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
+vim.lsp.config("html", {})
 
 -- CSS LSP
-lspconfig.cssls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
+vim.lsp.config("cssls", {})
 
 -- TailwindCSS LSP
-lspconfig.tailwindcss.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
+vim.lsp.config("tailwindcss", {})
 
 -- Bash LSP
-lspconfig.bashls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
+vim.lsp.config("bashls", {
   filetypes = { "sh", "bash" },
-}
+})
 
 -- Markdown LSP (Marksman)
-lspconfig.marksman.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
+vim.lsp.config("marksman", {
   filetypes = { "markdown", "markdown.mdx" },
-}
+})
 
 -- TypeScript/JavaScript
-lspconfig.ts_ls.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false -- disable formatting to avoid conflict with prettier
-    custom_on_attach(client, bufnr)
-  end,
-  capabilities = capabilities,
-
+vim.lsp.config("ts_ls", {
   cmd = { "typescript-language-server", "--stdio" },
-
   filetypes = {
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact",
   },
-
   settings = {
     typescript = {
       preferences = {
         includeCompletionsForModuleExports = true,
         includeCompletionsWithInsertText = true,
-        importModuleSpecifierPreference = "shortest", -- respects tsconfig paths (@/ aliases)
+        importModuleSpecifierPreference = "shortest",
       },
     },
     javascript = {
       preferences = {
         includeCompletionsForModuleExports = true,
         includeCompletionsWithInsertText = true,
-        importModuleSpecifierPreference = "shortest", -- respects tsconfig paths (@/ aliases)
+        importModuleSpecifierPreference = "shortest",
       },
     },
   },
-}
+})
 
 -- JSON LSP
-lspconfig.jsonls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
+vim.lsp.config("jsonls", {})
 
--- ESLint LSP (works with eslint-config-next and any ESLint config)
-lspconfig.eslint.setup {
-  on_attach = function(client, bufnr)
-    custom_on_attach(client, bufnr)
-    -- Auto-fix all ESLint issues on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-  capabilities = capabilities,
-}
+-- ESLint LSP
+vim.lsp.config("eslint", {})
 
 -- Emmet LSP
-lspconfig.emmet_ls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
+vim.lsp.config("emmet_ls", {
   filetypes = {
     "html",
     "css",
@@ -132,23 +116,19 @@ lspconfig.emmet_ls.setup {
       },
     },
   },
-}
+})
 
 -- GraphQL LSP
-lspconfig.graphql.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
+vim.lsp.config("graphql", {
   filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript", "javascript" },
-}
+})
 
 -- YAML LSP
-lspconfig.yamlls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
+vim.lsp.config("yamlls", {
   settings = {
     yaml = {
       schemaStore = {
-        enable = true, -- auto-detect and apply schemas from SchemaStore
+        enable = true,
         url = "https://www.schemastore.org/api/json/catalog.json",
       },
       schemas = {
@@ -165,12 +145,10 @@ lspconfig.yamlls.setup {
       hover = true,
     },
   },
-}
+})
 
 -- C/C++ LSP
-lspconfig.clangd.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
+vim.lsp.config("clangd", {
   cmd = {
     "clangd",
     "--background-index",
@@ -179,30 +157,19 @@ lspconfig.clangd.setup {
     "--header-insertion=iwyu",
   },
   filetypes = { "c", "cpp", "objc", "objcpp" },
-}
+})
 
--- Prisma LSP (schema validation, completions, formatting via `prisma format`)
-lspconfig.prismals.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
+-- Prisma LSP
+vim.lsp.config("prismals", {})
 
 -- Docker LSP
-lspconfig.dockerls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
+vim.lsp.config("dockerls", {})
 
 -- Docker Compose LSP
-lspconfig.docker_compose_language_service.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
-}
+vim.lsp.config("docker_compose_language_service", {})
 
 -- Lua LSP (lazydev.nvim handles workspace/library automatically)
-lspconfig.lua_ls.setup {
-  on_attach = custom_on_attach,
-  capabilities = capabilities,
+vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
       diagnostics = {
@@ -219,10 +186,28 @@ lspconfig.lua_ls.setup {
       },
     },
   },
+})
+
+-- Enable all servers
+vim.lsp.enable {
+  "html",
+  "cssls",
+  "tailwindcss",
+  "bashls",
+  "marksman",
+  "ts_ls",
+  "jsonls",
+  "eslint",
+  "emmet_ls",
+  "graphql",
+  "yamlls",
+  "clangd",
+  "prismals",
+  "dockerls",
+  "docker_compose_language_service",
+  "lua_ls",
 }
 
 -- -- Python LSP
--- lspconfig.pyright.setup {
---   on_attach = custom_on_attach,
---   capabilities = capabilities,
--- }
+-- vim.lsp.config("pyright", {})
+-- vim.lsp.enable { "pyright" }
