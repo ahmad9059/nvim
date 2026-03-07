@@ -24,9 +24,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
       client.server_capabilities.documentFormattingProvider = false
     end
 
-    -- Auto-fix all ESLint issues on save
+    -- Auto-fix all ESLint issues on save (use augroup to prevent stacking)
     if client and client.name == "eslint" then
+      local group = vim.api.nvim_create_augroup("EslintFixAll_" .. bufnr, { clear = true })
       vim.api.nvim_create_autocmd("BufWritePre", {
+        group = group,
         buffer = bufnr,
         command = "EslintFixAll",
       })
@@ -53,8 +55,10 @@ vim.lsp.config("html", {})
 -- CSS LSP
 vim.lsp.config("cssls", {})
 
--- TailwindCSS LSP
-vim.lsp.config("tailwindcss", {})
+-- TailwindCSS LSP (only starts if tailwind config exists)
+vim.lsp.config("tailwindcss", {
+  root_markers = { "tailwind.config.js", "tailwind.config.cjs", "tailwind.config.mjs", "tailwind.config.ts" },
+})
 
 -- Bash LSP
 vim.lsp.config("bashls", {
@@ -118,9 +122,10 @@ vim.lsp.config("emmet_ls", {
   },
 })
 
--- GraphQL LSP
+-- GraphQL LSP (only starts if graphql config exists)
 vim.lsp.config("graphql", {
   filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript", "javascript" },
+  root_markers = { ".graphqlrc", ".graphqlrc.yml", ".graphqlrc.yaml", ".graphqlrc.json", "graphql.config.js", "graphql.config.ts" },
 })
 
 -- YAML LSP

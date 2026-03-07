@@ -132,7 +132,7 @@ return {
   -- Neovim Tmux Navigation
   {
     "christoomey/vim-tmux-navigator",
-    lazy = false,
+    event = "VeryLazy",
   },
 
   {
