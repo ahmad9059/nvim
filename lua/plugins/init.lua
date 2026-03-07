@@ -168,6 +168,11 @@ return {
         end
         return true
       end,
+      sources = {
+        providers = {
+          snippets = { score_offset = 7 },
+        },
+      },
       completion = {
         menu = { border = "rounded" },
         documentation = { window = { border = "rounded" } },
